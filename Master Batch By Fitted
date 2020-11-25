@@ -643,7 +643,7 @@ goto choice2
 
 :update
 Title Update
-Set "url=https://pastebin.com/raw/qQXj89Tb"
+Set "url=https://raw.githubusercontent.com/fittedbark9/Master-Batch/main/Master%20Batch%20By%20Fitted"
 for %%# in (%url%) do ( set "File=%tmp%\%%~n#.bat" )
 Call :Download "%url%" "%File%"
 If exist "%File%" ( 
