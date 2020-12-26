@@ -127,11 +127,11 @@ cls
 Title Custom File Maker
 Color D
 set /p text=What would you like it to say?:
-echo -------------------------------------------------------------------------------
+echo ------------------------------------------------------------------------------
 set /p name=What would you like the name of the file to be?:
-echo -------------------------------------------------------------------------------
+echo ------------------------------------------------------------------------------
 set /p type=What would you like the type of file to be? (txt, bat, lua etc.):
-echo -------------------------------------------------------------------------------
+echo ------------------------------------------------------------------------------
 echo %text% > %name%.%type%
 pause
 echo File generated!
@@ -142,7 +142,7 @@ cls
 set choice=blankchoice
 echo 1)Back to home
 echo 2)Close
-echo -------------------------------------------------------------------------------
+echo ------------------------------------------------------------------------------
 set /p choice=Choice:
 if %choice%==1 goto choice1
 if %choice%==2 goto end
@@ -171,7 +171,7 @@ echo 3)Facebook
 echo 4)Instagram
 echo 5)Steam account generator
 echo 6)Home
-echo -------------------------------------------------------------------------------
+echo ------------------------------------------------------------------------------
 set /p choice=Choice:
 if %choice%==1 goto yt
 if %choice%==2 goto twit
@@ -222,7 +222,7 @@ echo 2)Subtraction
 echo 3)Multiplication
 echo 4)Division
 echo 5)Back home
-echo -------------------------------------------------------------------------------
+echo ------------------------------------------------------------------------------
 set /p choice=Choice:
 if %choice%==1 goto add
 if %choice%==2 goto sub
@@ -236,7 +236,7 @@ goto calculator
 :add
 cls
 echo Addition!
-echo -------------------------------------------------------------------------------
+echo ------------------------------------------------------------------------------
 set /p #1=Number 1:
 echo          +
 set /p #2=Number 2:
@@ -249,7 +249,8 @@ goto choice2
 :sub
 cls
 echo Subtraction!
-echo -------------------------------------------------------------------------------
+echo ------------------------------------------------------------------------------
+
 set /p #1=Number 1:
 echo          -
 set /p #2=Number 2:
@@ -262,7 +263,7 @@ goto choice2
 :mult
 cls
 echo Multiplication!
-echo -------------------------------------------------------------------------------
+echo ------------------------------------------------------------------------------
 set /p #1=Number 1:
 echo          X
 set /p #2=Number 2:
@@ -275,7 +276,7 @@ goto choice2
 :divide
 cls
 echo Division!
-echo -------------------------------------------------------------------------------
+echo ------------------------------------------------------------------------------
 set /p #1=Number 1:
 echo          /
 set /p #2=Number 2:
@@ -314,7 +315,7 @@ goto pinging
 cls
 Title ARE YOU SURE 
 color 4
-echo -------------------------------------ARE YOU SURE-------------------------------------
+echo ---------------------------------ARE YOU SURE---------------------------------
 echo 1)IP Stresser (MAKE SURE TO BE ON A VPN JUST ENCASE THEY KNOW HOW TO USE WIRESHARK lol)
 echo 2)Back home
 echo 3)Exit
@@ -725,7 +726,7 @@ cls
 Title Information
 color a
 echo For: %ipsearch%
-echo =======================================================================================
+echo ==============================================================================
 type ipinfo.txt | findstr "ip"
 type ipinfo.txt | findstr "city"
 type ipinfo.txt | findstr "region" 
@@ -736,7 +737,7 @@ type ipinfo.txt | findstr "longitude"
 type ipinfo.txt | findstr "timezone"
 type ipinfo.txt | findstr "currency" | findstr /v "currency_name"
 type ipinfo.txt | findstr "country_calling_code"
-echo =======================================================================================
+echo ==============================================================================
 echo Searched with https://ipapi.co/
 
 del ipinfo.txt
@@ -787,7 +788,7 @@ cls
 Title Information
 color a
 echo For %ipsearch%:
-echo =======================================================================================
+echo ==============================================================================
 type portscaninfo.txt | findstr "PORT"
 type portscaninfo.txt | findstr "21/tcp"
 type portscaninfo.txt | findstr "22/tcp" 
@@ -797,7 +798,7 @@ type portscaninfo.txt | findstr "110/tcp"
 type portscaninfo.txt | findstr "143/tcp"
 type portscaninfo.txt | findstr "443/tcp"
 type portscaninfo.txt | findstr "3389/tcp"
-echo =======================================================================================
+echo ==============================================================================
 echo Scanned with https://hackertarget.com
 
 del portscaninfo.txt
@@ -840,9 +841,9 @@ ping localhost -n 2 >nul
 cls
 
 echo For %ipsearch%:
-echo =======================================================================================
+echo ==============================================================================
 type reversednsinfo.txt | findstr "%ipsearch%"
-echo =======================================================================================
+echo ==============================================================================
 echo Scanned with https://hackertarget.com
 
 
@@ -890,9 +891,9 @@ ping localhost -n 2 >nul
 cls
 title Dump Info
 echo For %website%:
-echo =======================================================================================
+echo ==============================================================================
 type dumpedwebsite.txt | findstr "http"
-echo =======================================================================================
+echo ==============================================================================
 echo Scanned with https://hackertarget.com
 
 
